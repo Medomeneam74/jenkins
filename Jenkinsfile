@@ -29,9 +29,16 @@ pipeline {
         }
 
         failure {
-		mail to: 'medomeneam2@gmail.com'
-		subject:"FAILED"
-		body: "Jenkins pipeline is failed"             
+		            emailext(
+                to: 'medomeneam2@gmail.com',
+                subject: "FAILED: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: """
+                    Build failed!
+                    Job: ${env.JOB_NAME}
+                    Build: ${env.BUILD_NUMBER}
+                    URL: ${env.BUILD_URL}
+                """
+            )
 
         }
     }
