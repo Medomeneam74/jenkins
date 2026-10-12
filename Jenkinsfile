@@ -29,7 +29,7 @@ pipeline {
         }
 
         failure {
-		            emailext(
+		            mail(
                 to: 'medomeneam2@gmail.com',
                 subject: "FAILED: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                 body: """
